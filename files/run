@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+[[ -n $MONGOD_REPLSET ]] && MONGOD_OPTS="$MONGOD_OPTS --replSet \"$MONGOD_REPLSET\""
+if [[ ! -d /data/db ]]; then
+	mkdir -p /data/db
+	chown app:app /data/db
+	chmod 755 /data /data/db
+fi
+exec chpst -u app:app /usr/bin/mongod --syslog --quiet $MONGOD_OPTS
