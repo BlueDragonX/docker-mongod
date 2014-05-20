@@ -8,10 +8,10 @@ ENTRYPOINT ["/sbin/my_init"]
 
 # install packages
 RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7F0CEB10 && \
-    apt-get update -qy
-RUN apt-get install -y mongodb-org-server=2.6.1 && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7F0CEB10 && \
+	apt-get update -qy && \
+	apt-get install -y mongodb-org-server=2.6.1 && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 # create dirs and add config files
